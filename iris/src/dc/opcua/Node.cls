@@ -9,6 +9,30 @@ Property name As %VarString;
 
 Property type As %String;
 
+Index pathIndex On (namespace, parent, name) [ Unique ];
+
+ClassMethod add(namespace, parent, name, type = "", Output id) As %Status
+{
+	set node = ..%New()
+	set node.namespace = namespace
+	set node.parent = parent
+	set node.name = name
+	set node.type = type
+	set sc = node.%Save()
+	
+	set id = node.%Id()
+	quit sc
+}
+
+ClassMethod getNodeId(namespace, parent, name) As %Integer
+{
+	if '..pathIndexExists(namespace, parent, name, .id) {
+		$$$TOE(sc,..add(namespace, parent, name, ,.id))
+	}
+	
+	quit id
+}
+
 Storage Default
 {
 <Data name="NodeDefaultData">
