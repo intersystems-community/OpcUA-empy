@@ -1,7 +1,8 @@
 import logging
 import asyncio
 import sys
-sys.path.insert(0, "..")
+import argparse
+
 from random import randrange
 
 from asyncua import ua, Server
@@ -19,7 +20,7 @@ def func(parent, value):
     return value * 2
 
 
-async def main(count: int):
+async def main(nodes: int, sleep: float):
     _logger = logging.getLogger('asyncua')
     # setup our server
     server = Server()
@@ -35,23 +36,26 @@ async def main(count: int):
     myobj = await server.nodes.objects.add_object(idx, 'MyObject')
 
     myvars = []
-    for i in range(count):
+    for i in range(nodes):
         myvar = await myobj.add_variable(idx, f'MyVariable{i}', randrange(100))
         await myvar.set_writable()
         myvars.append(myvar)
-    # Set MyVariable to be writable by clients
 
     await server.nodes.objects.add_method(ua.NodeId('ServerMethod', 2), ua.QualifiedName('ServerMethod', 2), func, [ua.VariantType.Int64], [ua.VariantType.Int64])
     _logger.info('Starting server!')
     async with server:
         while True:
-            await asyncio.sleep(0.1)
-            myvar = myvars[randrange(count)]
+            await asyncio.sleep(sleep)
+            myvar = myvars[randrange(nodes)]
             new_val = await myvar.get_value() + 0.1
             await myvar.write_value(new_val)
 
 
 if __name__ == '__main__':
-    count = 100
+    parser = argparse.ArgumentParser(description='Start OpcUA server.', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument('--nodes', type=int, default=100, nargs='?', help='Number of nodes to publish.')
+    parser.add_argument('--sleep', type=float, default=0.1, nargs='?', help='Sleep (in seconds) between nodes modifications.')
+    args = parser.parse_args()
+
     logging.basicConfig(level=logging.DEBUG)
-    asyncio.run(main(count), debug=False)
+    asyncio.run(main(args.nodes, args.sleep), debug=False)

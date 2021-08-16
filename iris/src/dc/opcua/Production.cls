@@ -9,7 +9,7 @@ XData ProductionDefinition
   <Item Name="QueryService" Category="" ClassName="dc.opcua.Service" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="parent">MyObject</Setting>
     <Setting Target="Host" Name="uri">http://examples.freeopcua.github.io</Setting>
-    <Setting Target="Host" Name="url">opc.tcp://py:4840/freeopcua/server/</Setting>
+    <Setting Target="Host" Name="url">opc.tcp://opcua:4840/freeopcua/server/</Setting>
   </Item>
 </Production>
 }

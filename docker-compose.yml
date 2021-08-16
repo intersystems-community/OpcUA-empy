@@ -11,12 +11,14 @@ services:
       - 1972:1972
     volumes:
       - ./iris.key:/usr/irissys/mgr/iris.key:ro
+    env_file: .env
 
-  py:
+  opcua:
     init: true
     image: opcua-server
+#    entrypoint: ["python", "/app/server.py", "--nodes", "10", "--sleep", "0.1"]
     build:
-      context: python
+      context: opcua
       dockerfile: Dockerfile
     ports:
       - 4840:4840

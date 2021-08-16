@@ -3,6 +3,8 @@ Class dc.opcua.Service Extends Ens.BusinessService
 
 Parameter ADAPTER = "Ens.InboundAdapter";
 
+Property Adapter As Ens.InboundAdapter;
+
 Property %client As %SYS.Python;
 
 /// key - node id

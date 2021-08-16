@@ -3,3 +3,4 @@ obj
 bin
 *.bak
 *.key
+.env
