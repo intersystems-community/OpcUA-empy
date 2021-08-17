@@ -1,7 +1,6 @@
 version: "2.2"
 services:
   iris:
-    init: true
     image: irisopcua
     build:
       context: iris
