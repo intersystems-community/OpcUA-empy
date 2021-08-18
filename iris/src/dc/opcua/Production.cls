@@ -11,6 +11,8 @@ XData ProductionDefinition
     <Setting Target="Host" Name="uri">http://examples.freeopcua.github.io</Setting>
     <Setting Target="Host" Name="url">opc.tcp://opcua:4840/freeopcua/server/</Setting>
   </Item>
+  <Item Name="SMS" Category="" ClassName="dc.opcua.SMS" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
 </Production>
 }
 

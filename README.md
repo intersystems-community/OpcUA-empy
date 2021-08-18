@@ -18,6 +18,18 @@ This demo starts an OpcUA server (100 nodes) and queries them using InterSystems
 1. `dc_opcua.Node` table contains auto-discovered nodes.
 2. `dc_opcua.Value` table contains node values.
 
+# SMS
+
+Send SMS via AWS SNS. AWS SMS is a paid service. [Pricing](https://aws.amazon.com/sns/sms-pricing/).
+
+1. In the `.env` file set your `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. Optionally adjust `AWS_DEFAULT_REGION`.
+2. Restart the `iris` container for the new environment variables to take effect. 
+3. Go to: `AWS Management Console` > `Simple Notification Service` > `Text messaging (SMS)`, switch to the `AWS_DEFAULT_REGION` if needed.
+4. If your account is in `SMS sandbox` (default), go to `Sandbox add phone number` > `Add a phone number` and add your phone number.
+5. In `SMS` Business Operation, set the `phone` setting to your phone number.
+6. Test `SMS` Business Operation by sending a `Ens.StringContainer` request to it.
+
+
 
 # Customization
 
