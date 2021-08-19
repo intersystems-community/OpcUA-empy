@@ -7,11 +7,9 @@ Property parent As %VarString;
 
 Property name As %VarString;
 
-Property type As %String;
-
 Index pathIndex On (namespace, parent, name) [ Unique ];
 
-ClassMethod add(namespace, parent, name, type = "", Output id) As %Status
+ClassMethod Add(namespace, parent, name, Output id) As %Status
 {
 	set node = ..%New()
 	set node.namespace = namespace
@@ -24,10 +22,10 @@ ClassMethod add(namespace, parent, name, type = "", Output id) As %Status
 	quit sc
 }
 
-ClassMethod getNodeId(namespace, parent, name) As %Integer
+ClassMethod GetNodeId(namespace, parent, name) As %Integer
 {
 	if '..pathIndexExists(namespace, parent, name, .id) {
-		$$$TOE(sc,..add(namespace, parent, name, ,.id))
+		$$$TOE(sc,..Add(namespace, parent, name, .id))
 	}
 	
 	quit id
@@ -47,9 +45,6 @@ Storage Default
 </Value>
 <Value name="4">
 <Value>name</Value>
-</Value>
-<Value name="5">
-<Value>type</Value>
 </Value>
 </Data>
 <DataLocation>^dc.opcua.NodeD</DataLocation>

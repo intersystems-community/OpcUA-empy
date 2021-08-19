@@ -1,4 +1,4 @@
-Class dc.opcua.Service Extends Ens.BusinessService
+Class dc.opcua.QueryService Extends Ens.BusinessService
 {
 
 Parameter ADAPTER = "Ens.InboundAdapter";
@@ -43,7 +43,7 @@ Method OnInit() As %Status
 		for i=0:1:builtins.len(nodesPy)-1 {
 			set node = nodesPy."__getitem__"(i)
 			set nodeName = node."read_display_name"().Text
-			set nodeId = ##class(Node).getNodeId(..uri, ..parent, nodeName)
+			set nodeId = ##class(Node).GetNodeId(..uri, ..parent, nodeName)
 			do ..%nodes.SetAt(node, nodeId)
 		}
 	} catch ex {
@@ -62,7 +62,7 @@ Method OnProcessInput(pInput As %RegisteredObject, Output pOutput As %Registered
 			set node = ..%nodes.GetNext(.id)
 			quit:'id
 			set value = node."read_value"()
-			set sc = ##class(Value).add(id, value)	
+			set sc = ##class(Value).Add(id, value)	
 		}
 	} catch ex {
 		#dim ex As %Exception.General

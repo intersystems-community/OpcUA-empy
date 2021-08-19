@@ -7,7 +7,11 @@ Property value As %Decimal(SCALE = 2);
 
 Property ts As %TimeStamp;
 
-ClassMethod add(nodeId As %Integer, value As %Decimal, ts As %TimeStamp = {$zdt($now(),3,1,6)}) As %Status
+Index nodeIndex On node [ Type = bitmap ];
+
+Index tsIndex On ts;
+
+ClassMethod Add(nodeId As %Integer, value As %Decimal, ts As %TimeStamp = {$zdt($now(),3,1,6)}) As %Status
 {
 	set obj = ..%New()
 	do obj.nodeSetObjectId(nodeId)
