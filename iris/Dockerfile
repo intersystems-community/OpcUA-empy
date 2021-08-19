@@ -18,6 +18,7 @@ RUN \
   do ##class(%SYS.Python).Install("asyncua==0.9.14") \
   do ##class(%SYS.Python).Install("boto3") \
   do $SYSTEM.OBJ.LoadDir("/tmp", "ck", , 1) \
+  do ##class(dc.opcua.Threshold).Init() \
   set production = "dc.opcua.Production" \
   set ^Ens.Configuration("csp","LastProduction") = production \
   do ##class(Ens.Director).SetAutoStart(production)
