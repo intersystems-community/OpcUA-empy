@@ -1,7 +1,7 @@
 # OpcUA-empy
-Demo OpcUA BS with Embedded Python.
+OpcUA and AWS SNS integration with Embedded Python.
 
-This demo starts an OpcUA server (100 nodes) and queries them using InterSystems IRIS and EmbeddedPython.
+This demo starts an OpcUA server (100 nodes) and queries them using InterSystems IRIS and EmbeddedPython. Nodes and their values are saved into tables. Another service monitors node values and if they are above thresholds, service sends message to AWS SNS operation which sends SMS notifications.
 
 ![](architecture.png)
 
