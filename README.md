@@ -52,3 +52,8 @@ Available parameters are:
 2. To customize query frequency, set `Call Interval` value in `QueryService` business service (default: 5 seconds).
 
 3. To customize server, namespace, and parent node (InterSystems IRIS queries all children of this node), edit `OpcUA` setting category in `QueryService` business service.
+
+4. To modify threshold call: `set sc = ##class(dc.opcua.Threshold).Add(nodeId, value, type)` where:
+  - `nodeId` - ID of the applicable node
+  - `value` - threshold value
+  - `type` - either `warning` or `error`
