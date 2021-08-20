@@ -17,6 +17,7 @@ This demo starts an OpcUA server (100 nodes) and queries them using InterSystems
 
 1. `dc_opcua.Node` table contains auto-discovered nodes.
 2. `dc_opcua.Value` table contains node values.
+2. `dc_opcua.Threshold` table contains values thresholds.
 
 # SMS
 
@@ -30,6 +31,10 @@ Send SMS via AWS SNS. AWS SMS is a paid service. [Pricing](https://aws.amazon.co
 6. Test `SMS` Business Operation by sending a `Ens.StringContainer` request to it.
 
 Tip! To prevent accidental commit of a modified `.env` file execute: `git update-index --assume-unchanged .env`
+
+# Monitoring
+
+After enabling SMS enable `MonitoringService` to check values against thresholds and send SMS if the thresholds are exceeded.
 
 
 # Customization
