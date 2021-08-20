@@ -15,7 +15,6 @@ ClassMethod Add(namespace, parent, name, Output id) As %Status
 	set node.namespace = namespace
 	set node.parent = parent
 	set node.name = name
-	set node.type = type
 	set sc = node.%Save()
 	
 	set id = node.%Id()
