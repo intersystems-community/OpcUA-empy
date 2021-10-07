@@ -17,7 +17,7 @@ Parameter SETTINGS = "phone:SMS";
 
 Method OnMessage(request As Ens.StringContainer, Output response As Ens.StringContainer) As %Status
 {
-	#dim sc As %Ststus = $$$OK
+	#dim sc As %Status = $$$OK
 	try {
 		set response = ##class(Ens.StringContainer).%New(..SendSMS(request.StringValue))
 		set code = +{}.%FromJSON(response.StringValue).ResponseMetadata.HTTPStatusCode
@@ -37,7 +37,7 @@ Method SendSMS(msg As %String) [ Language = python ]
 
 Method OnInit() As %Status
 {
-	#dim sc As %Styatus = $$$OK
+	#dim sc As %Status = $$$OK
 	try {
 		do ..PyInit()
 	} catch ex {
