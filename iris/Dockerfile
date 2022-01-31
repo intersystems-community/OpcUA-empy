@@ -8,7 +8,7 @@ USER ${ISC_PACKAGE_MGRUSER}
 COPY --chown=$ISC_PACKAGE_MGRUSER:$ISC_PACKAGE_IRISGROUP --chmod=+x irissession.sh /
 COPY --chown=$ISC_PACKAGE_MGRUSER:$ISC_PACKAGE_IRISGROUP src /tmp
 
-# RUN chmod +x /irissession.sh
+RUN chmod +x /irissession.sh
 
 RUN pip install asyncua==0.9.14 boto3 --no-cache-dir --target $ISC_PACKAGE_INSTALLDIR/mgr/python
 
