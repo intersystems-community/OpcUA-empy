@@ -19,13 +19,15 @@ Method PyProcessInput() [ Language = python ]
 	start = (datetime.now()-timedelta(seconds=period)).strftime("%Y-%m-%d %H:%M:%S")
 
 	statement = iris.sql.prepare("SELECT * FROM dc_opcua.Threshold_Active(?)")
+	##ID, node, type, value
 	rset = statement.execute(period)
-	alerts = "Alerts over the period: " + start + " to " + end + "\n"
+	alerts = ""
 
 	for line in rset:
-		alerts =  alerts + "[" + str(line[1]) + "] Node: " + str(line[0]) + " avg value: " + str(line[3]) + " above threshold: " + str(line[2]) + "\n"
+		alerts = alerts + "[" + str(line[1]) + "] Node: " + str(line[0]) + " avg value: " + str(line[3]) + " above threshold: " + str(line[2]) + "\n"
 
 	if len(alerts) > 0:
+		alerts = "Alerts over the period: " + start + " to " + end + "\n" + alerts
 		request = iris.cls("Ens.StringContainer")._New(alerts)
 		self.SendRequestAsync(self.SMSOperation, request)
 }
