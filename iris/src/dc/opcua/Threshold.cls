@@ -8,7 +8,7 @@ Property value As %Decimal(SCALE = 2);
 Property type As %String(VALUELIST = ",warning,error");
 
 /// do ##class(dc.opcua.Threshold).ActiveFunc(100).%Display()
-Query Active(period) As %SQLQuery
+Query Active(period) As %SQLQuery [ SqlProc ]
 {
 SELECT 
 	t.node->name node,  
@@ -62,8 +62,32 @@ Storage Default
 </Data>
 <DataLocation>^dc.opcua.ThresholdD</DataLocation>
 <DefaultData>ThresholdDefaultData</DefaultData>
+<ExtentSize>2</ExtentSize>
 <IdLocation>^dc.opcua.ThresholdD</IdLocation>
 <IndexLocation>^dc.opcua.ThresholdI</IndexLocation>
+<Property name="%%CLASSNAME">
+<AverageFieldSize>2</AverageFieldSize>
+<Selectivity>100.0000%</Selectivity>
+</Property>
+<Property name="%%ID">
+<AverageFieldSize>3</AverageFieldSize>
+<Selectivity>1</Selectivity>
+</Property>
+<Property name="node">
+<AverageFieldSize>3</AverageFieldSize>
+<Selectivity>100.0000%</Selectivity>
+</Property>
+<Property name="type">
+<AverageFieldSize>8</AverageFieldSize>
+<Selectivity>50.0000%</Selectivity>
+</Property>
+<Property name="value">
+<AverageFieldSize>3</AverageFieldSize>
+<Selectivity>50.0000%</Selectivity>
+</Property>
+<SQLMap name="IDKEY">
+<BlockCount>-4</BlockCount>
+</SQLMap>
 <StreamLocation>^dc.opcua.ThresholdS</StreamLocation>
 <Type>%Storage.Persistent</Type>
 }
