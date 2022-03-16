@@ -1,4 +1,4 @@
-FROM containers.intersystems.com/intersystems/iris-community:2021.2.0.649.0
+FROM containers.intersystems.com/intersystems/iris-community:2021.2.0.651.0
 
 ENV PIP_NO_CACHE_DIR=1
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
